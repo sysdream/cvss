@@ -144,6 +144,19 @@
               return 'Unknown';
       }
   };
+  /**
+   * Stringify a score into a qualitative severity rating string
+   * @param score
+   */
+  const humanizeScore = (score) => score <= 0
+      ? 'None'
+      : score <= 3.9
+          ? 'Low'
+          : score <= 6.9
+              ? 'Medium'
+              : score <= 8.9
+                  ? 'High'
+                  : 'Critical';
 
   const VERSION_REGEX = /^CVSS:(\d(?:\.\d)?)(.*)?$/;
   const parseVersion = (cvssStr) => {
@@ -502,6 +515,7 @@
   exports.environmentalMetricValues = environmentalMetricValues;
   exports.humanizeBaseMetric = humanizeBaseMetric;
   exports.humanizeBaseMetricValue = humanizeBaseMetricValue;
+  exports.humanizeScore = humanizeScore;
   exports.metricsIndex = metricsIndex;
   exports.parseMetrics = parseMetrics;
   exports.parseMetricsAsMap = parseMetricsAsMap;

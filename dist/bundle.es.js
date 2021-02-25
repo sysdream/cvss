@@ -141,6 +141,19 @@ const humanizeBaseMetricValue = (value, metric) => {
             return 'Unknown';
     }
 };
+/**
+ * Stringify a score into a qualitative severity rating string
+ * @param score
+ */
+const humanizeScore = (score) => score <= 0
+    ? 'None'
+    : score <= 3.9
+        ? 'Low'
+        : score <= 6.9
+            ? 'Medium'
+            : score <= 8.9
+                ? 'High'
+                : 'Critical';
 
 const VERSION_REGEX = /^CVSS:(\d(?:\.\d)?)(.*)?$/;
 const parseVersion = (cvssStr) => {
@@ -481,4 +494,4 @@ const calculateTemporalScore = (cvssString) => {
     return score;
 };
 
-export { BaseMetric, EnvironmentalMetric, TemporalMetric, baseMetricMap, baseMetricValues, calculateBaseResult, calculateBaseScore, calculateEnvironmentalResult, calculateEnvironmentalScore, calculateExploitability, calculateImpact, calculateIss, calculateMExploitability, calculateMImpact, calculateMiss, calculateTemporalResult, calculateTemporalScore, environmentalMetricMap, environmentalMetricValues, humanizeBaseMetric, humanizeBaseMetricValue, metricsIndex, parseMetrics, parseMetricsAsMap, parseVector, parseVersion, populateUndefinedMetrics, temporalMetricMap, temporalMetricValues, validate, validateVersion };
+export { BaseMetric, EnvironmentalMetric, TemporalMetric, baseMetricMap, baseMetricValues, calculateBaseResult, calculateBaseScore, calculateEnvironmentalResult, calculateEnvironmentalScore, calculateExploitability, calculateImpact, calculateIss, calculateMExploitability, calculateMImpact, calculateMiss, calculateTemporalResult, calculateTemporalScore, environmentalMetricMap, environmentalMetricValues, humanizeBaseMetric, humanizeBaseMetricValue, humanizeScore, metricsIndex, parseMetrics, parseMetricsAsMap, parseVector, parseVersion, populateUndefinedMetrics, temporalMetricMap, temporalMetricValues, validate, validateVersion };
